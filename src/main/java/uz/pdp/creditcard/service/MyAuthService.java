@@ -12,6 +12,8 @@ import uz.pdp.creditcard.entity.UserData;
 import uz.pdp.creditcard.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class MyAuthService implements UserDetailsService {
@@ -25,12 +27,23 @@ public class MyAuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserData userData = userRepository.findByUsername(username);
-        if (userData != null) {
-            return new User(userData.getUsername(), passwordEncoder.encode(userData.getPassword()), new ArrayList<>());
-        }
+//        UserData userData = userRepository.findByUsername(username);
 
-        throw new UsernameNotFoundException("userData not found");
+        List<User> users = new ArrayList<>(
+                Arrays.asList(
+                        new User("hello1", passwordEncoder.encode("hi1"), new ArrayList<>()),
+                        new User("hello2", passwordEncoder.encode("hi2"), new ArrayList<>()),
+                        new User("hello3", passwordEncoder.encode("hi3"), new ArrayList<>())
+                )
+        );
+
+        for (User user : users) {
+
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        throw new UsernameNotFoundException("user not found");
     }
 
 }
