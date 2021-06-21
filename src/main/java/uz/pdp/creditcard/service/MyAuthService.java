@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import uz.pdp.creditcard.entity.UserData;
-import uz.pdp.creditcard.repository.UserRepository;
+//import uz.pdp.creditcard.entity.UserData;
+//import uz.pdp.creditcard.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,8 +21,8 @@ public class MyAuthService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Autowired
-    UserRepository userRepository;
+//    @Autowired
+//    UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
